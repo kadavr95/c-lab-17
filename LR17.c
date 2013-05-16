@@ -58,10 +58,10 @@ int filling(struct tStudentCard *group)
 	srand(stime);
 	for (i = 0; i < number; i++)//случайное задание курса и оценок
 	{
-		group[i].Course = 1+4*rand()/RAND_MAX;
-		group[i].Marks.Math = 2+3*rand()/RAND_MAX;
-		group[i].Marks.Phys = 2+3*rand()/RAND_MAX;
-		group[i].Marks.Inform = 2+3*rand()/RAND_MAX;
+		group[i].Course = 1+5*rand()/RAND_MAX;
+		group[i].Marks.Math = 2+4*rand()/RAND_MAX;
+		group[i].Marks.Phys = 2+4*rand()/RAND_MAX;
+		group[i].Marks.Inform = 2+4*rand()/RAND_MAX;
 	}
 }
 

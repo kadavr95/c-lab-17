@@ -5,17 +5,20 @@
 #include <time.h>
 
 #define number 10
-struct tMarks { /* структура оценки */
-int Math; /* оценка по Математике */
-int Phys; /* оценка по Физике */
-int Inform; /* оценка по Информатике */
+
+struct tMarks
+{ /* структура оценки */
+	int Math; /* оценка по Математике */
+	int Phys; /* оценка по Физике */
+	int Inform; /* оценка по Информатике */
 };
 
-struct tStudentCard {
-char SurName[20]; /* фамилия */
-char Name[20]; /* имя */
-int Course; /* курс */
-struct tMarks Marks; /* оценки */
+struct tStudentCard
+{
+	char SurName[20]; /* фамилия */
+	char Name[20]; /* имя */
+	int Course; /* курс */
+	struct tMarks Marks; /* оценки */
 };
 
 int filling(struct tStudentCard *group);//прототипы функций
@@ -24,18 +27,19 @@ int search(struct tStudentCard *group);
 
 int main(void)//главная функция
 {
-	struct tStudentCard group[number] = {
-{"Gates","Bill",1,{5,5,5}},//задание имён и фамилий
-{"Jobs","Steve",1,{5,5,5}},
-{"Brin","Sergy",1,{5,5,5}},
-{"Page","Larry",1,{5,5,5}},
-{"Voznyak","Steve",1,{5,5,5}},
-{"Zuckerberg","Mark",1,{5,5,5}},
-{"Torvalds","Linux",1,{5,5,5}},
-{"Yang","Jerry",1,{5,5,5}},
-{"Ellison","Lawrence",1,{5,5,5}},
-{"Einstein","Albert",1,{5,5,5}},
-};
+	struct tStudentCard group[number] =
+	{
+		{"Gates","Bill",1,{5,5,5}},//задание имён и фамилий
+		{"Jobs","Steve",1,{5,5,5}},
+		{"Brin","Sergy",1,{5,5,5}},
+		{"Page","Larry",1,{5,5,5}},
+		{"Voznyak","Steve",1,{5,5,5}},
+		{"Zuckerberg","Mark",1,{5,5,5}},
+		{"Torvalds","Linux",1,{5,5,5}},
+		{"Yang","Jerry",1,{5,5,5}},
+		{"Ellison","Lawrence",1,{5,5,5}},
+		{"Einstein","Albert",1,{5,5,5}},
+	};
 	filling(group);//заполнение остального
 	output(group);//вывод списка
 	search(group);//поиск лучшего с первого курса
@@ -54,10 +58,10 @@ int filling(struct tStudentCard *group)
 	srand(stime);
 	for (i = 0; i < number; i++)//случайное задание курса и оценок
 	{
-			group[i].Course = 1+4*rand()/RAND_MAX;
-			group[i].Marks.Math = 2+3*rand()/RAND_MAX;
-			group[i].Marks.Phys = 2+3*rand()/RAND_MAX;
-			group[i].Marks.Inform = 2+3*rand()/RAND_MAX;
+		group[i].Course = 1+4*rand()/RAND_MAX;
+		group[i].Marks.Math = 2+3*rand()/RAND_MAX;
+		group[i].Marks.Phys = 2+3*rand()/RAND_MAX;
+		group[i].Marks.Inform = 2+3*rand()/RAND_MAX;
 	}
 }
 
@@ -85,12 +89,11 @@ int search(struct tStudentCard *group)//поиск строк с максимальной суммой элемен
 	{
 		if (group[i].Course==1)
 		{
-
-		sum=group[i].Marks.Math+group[i].Marks.Phys+group[i].Marks.Inform;
-		if (sum>maxsum)//сравнение с максимальной суммой
-		{
-			maxsum=sum;//изменение максимальной суммы если она меньше новой
-		}
+			sum=group[i].Marks.Math+group[i].Marks.Phys+group[i].Marks.Inform;
+			if (sum>maxsum)//сравнение с максимальной суммой
+			{
+				maxsum=sum;//изменение максимальной суммы если она меньше новой
+			}
 		}
 	}
 	printf("\nBest students from 1st course:\n");//вывод заголовка
@@ -98,13 +101,12 @@ int search(struct tStudentCard *group)//поиск строк с максимальной суммой элемен
 	{
 		if (group[i].Course==1)
 		{
-
-		sum=0;//обнуление суммы
-		 sum=group[i].Marks.Math+group[i].Marks.Phys+group[i].Marks.Inform;
-		if (sum==maxsum)//проверка равенства максимальной суммы и текущей
-		{
-			printf("%s %s\n",group[i].SurName,group[i].Name);//вывод номера строки
-		}
+			sum=0;//обнуление суммы
+			sum=group[i].Marks.Math+group[i].Marks.Phys+group[i].Marks.Inform;
+			if (sum==maxsum)//проверка равенства максимальной суммы и текущей
+			{
+				printf("%s %s\n",group[i].SurName,group[i].Name);//вывод номера строки
+			}
 		}
 	}
 }
